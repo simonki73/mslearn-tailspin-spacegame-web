@@ -24,22 +24,22 @@ steps:
 - script: './node_modules/.binnode-sass/ Tailspin.SpaceGame.Web/wwwroot --output Tailspin.SpaceGame.Web/wwwroot'    
   displayName: 'Compile Sass assets'
 
--task: gulp@1
-  displayName 'Run gulp tasks'
+- task: gulp@1
+  displayName: 'Run gulp tasks'
 
 - script: 'echo "$(Build.DefinitionName), $(Build.BuildId), $(Build.BuildNumber)" > buildinfo.txt'
   displayName: 'Write build info'
   workingDirectory: Tailspin.SpaceGame.Web/wwwroot
 
 - task: DotNetCoreCLI@2
-  displayName 'Restore project dependencies'
+  displayName: 'Restore project dependencies'
   inputs: 
     command: 'Restore'
     projects: '**/*.csproj'
 
 - task: @DotNetCoreCLI@2
-  displayName: 'Build the project - 'Release'
-  inputs: 
-    command: 'Build'
-    arguments: '--no-restore --configuration 'Release'
-    projects: '**/*.csproj'
+    displayName: 'Build the project - Release'
+    inputs: 
+      command: 'Build'
+      arguments: '--no-restore --configuration 'Release'
+      projects: '**/*.csproj'
